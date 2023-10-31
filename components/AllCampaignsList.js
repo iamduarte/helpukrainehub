@@ -9,13 +9,16 @@ export default function AllCampaignsList() {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch("https://helpukrainehub-cd14b.web.app/api/v1/test-data")
+    //fetch("https://helpukrainehub-cd14b.web.app/api/v1/test-data")
+    fetch("http://localhost:3000/api/v1/campaigns")
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-        const campaignsArray = Object.values(data.campaign);
-        setCampaigns(campaignsArray);
+        //const campaignsArray = Object.values(data.campaign);
+        //sort data by featured first
+        const sortedData = data.sort((a, b) => b.featured - a.featured);
+        setCampaigns(sortedData);
         setIsLoading(false);
       });
   }, []);

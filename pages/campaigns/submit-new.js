@@ -2,6 +2,7 @@ import NavbarSec from "@/components/ui/NavbarSec";
 import Link from "next/link";
 import Footer from "@/components/Footer";
 import bgimage from "@/assets/images/background1.jpeg";
+import AddCampaignForm from "@/components/ui/AddCampaignForm";
 
 export default function SubmitNew() {
   return (
@@ -15,7 +16,7 @@ export default function SubmitNew() {
         }}
       >
         <div className="hero-overlay bg-opacity-60"></div>
-        <div className="hero-content text-center text-neutral-content w-screen">
+        <div className="hero-content text-center text-neutral-content w-screen flex flex-col">
           <div className="card lg:card-side bg-base-100 shadow-xl">
             <div className="card-body text-black">
               <h1 className="text-5xl font-bold">HELP US GROW</h1>
@@ -32,8 +33,10 @@ export default function SubmitNew() {
               </div>
             </div>
           </div>
+          <AddCampaignForm />
         </div>
       </div>
+
       <Footer />
     </>
   );

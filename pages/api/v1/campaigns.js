@@ -35,8 +35,24 @@ export default async function handler(req, res) {
       console.error("error ", error);
     }
     //Return the content of the data file in json format
-    res.status(200).json(data);
-  } else {
-    res.status(505).json({ message: "Method not allowed" });
+    return res.status(200).json(data);
   }
+
+  if (req.method === "POST") {
+    //const campaign = JSON.parse(req.body);
+    const campaign = req.body;
+
+    console.log(typeof req.body);
+
+    console.log(campaign);
+    const client = await connectToDatabase();
+    const db = client.db("help-ukraine-hub");
+    const campaignsCollection = db.collection("Campaigns");
+
+    const result = await campaignsCollection.insertOne(campaign);
+
+    return res.status(200).json(campaign);
+  }
+
+  res.status(405).json({ message: "Method not allowed" });
 }

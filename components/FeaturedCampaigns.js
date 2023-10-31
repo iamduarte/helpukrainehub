@@ -12,13 +12,15 @@ export default function FeaturedCampaigns() {
 
   useEffect(() => {
     setIsLoading(true);
-    fetch("https://helpukrainehub-cd14b.web.app/api/v1/test-data")
+    //fetch("https://helpukrainehub-cd14b.web.app/api/v1/test-data")
+    fetch("http://localhost:3000/api/v1/campaigns")
       .then((response) => {
         return response.json();
       })
       .then((data) => {
-        const campaignsArray = Object.values(data.campaign);
-        const featuredArray = campaignsArray.filter(
+        //console.log(data);
+        //const campaignsArray = Object.values(data.campaign);
+        const featuredArray = data.filter(
           (campaign) => campaign.featured === true
         );
         setFeaturedCampaigns(featuredArray);
