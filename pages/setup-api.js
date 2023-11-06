@@ -8,7 +8,7 @@ import { handleClientScriptLoad } from "next/script";
 export default function ApiInfo() {
   const [isCopied, setIsCopied] = useState(false);
   //const apiLink = "http://localhost:3000/api/v1/test-data";
-  const apiLink = "https://helpukrainehub-cd14b.web.app/api/v1/test-data";
+  const apiLink = "https://helpukrainehub-cd14b.web.app/api/v1/campaings";
 
   const handleCopyClick = () => {
     navigator.clipboard.writeText(apiLink).then(() => {

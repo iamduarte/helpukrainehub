@@ -5,14 +5,15 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import AllCampaignsCard from "@/components/ui/AllCampaignsCard";
 import FilterCampaign from "@/components/ui/FilterCampaign";
+import { set } from "mongoose";
 
 export default function FileterdCampaigns() {
   const router = useRouter();
   const { query } = router;
-  console.log(query);
 
   //fetch campaigns from API using query params
   const [campaigns, setCampaigns] = useState([]);
+  const [tags, setTags] = useState([]);
 
   useEffect(() => {
     const getCampaigns = async () => {
@@ -20,9 +21,13 @@ export default function FileterdCampaigns() {
 
       const res = await fetch(`/api/v1/campaigns?${query.tags}`);
       const campaigns = await res.json();
-      console.log("USE EFFECT");
-      console.log(campaigns);
       setCampaigns(campaigns);
+
+      //create an array of tags from query params
+      const queryTags = query.tags.split("&tag=");
+      //remove 'tag=' from the first element of the array
+      queryTags[0] = queryTags[0].replace("tag=", "");
+      setTags(queryTags);
     };
     getCampaigns();
   }, [query]);
@@ -39,7 +44,7 @@ export default function FileterdCampaigns() {
       >
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-center w-screen grid mt-20">
-          <FilterCampaign />
+          <FilterCampaign passedTags={tags} />
           {campaigns &&
             campaigns.length > 0 &&
             campaigns.map((campaign) => (

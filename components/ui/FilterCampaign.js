@@ -1,9 +1,16 @@
 import { set } from "mongoose";
 import React, { useState, useEffect } from "react";
 
-export default function FilterCampaign() {
+export default function FilterCampaign({ passedTags }) {
   const [tags, setTags] = useState([]);
   const [selectedTags, setSelectedTags] = useState([]);
+
+  //if passedTags is not empty, set selectedTags to passedTags
+  useEffect(() => {
+    if (passedTags && passedTags.length > 0) {
+      setSelectedTags(passedTags);
+    }
+  }, [passedTags]);
 
   //get all campaigns from API, create an array of non repeated tags from all campaigns, console.log the array
   const getTags = async () => {

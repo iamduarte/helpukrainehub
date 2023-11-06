@@ -17,22 +17,6 @@ export default function SubmitNew() {
       >
         <div className="hero-overlay bg-opacity-60"></div>
         <div className="hero-content text-center text-neutral-content w-screen flex flex-col">
-          <div className="card lg:card-side bg-base-100 shadow-xl">
-            <div className="card-body text-black">
-              <h1 className="text-5xl font-bold">HELP US GROW</h1>
-              <p className="mt-10 text-xl">
-                In this page you will be able to submit a form containing new
-                fund raising campaigns so we can add them to our database!
-              </p>
-              <p className="mt-10 text-xl">This feature is coming soon!</p>
-              <div className="badge bg-blue-700 text-lg text-yellow-300 border-none absolute bottom-12 -right-2 transform scale-150 -rotate-45">
-                Coming Soon
-              </div>
-              <div className="badge bg-blue-700 text-lg text-yellow-300 border-none absolute top-12 -left-2 transform scale-150 -rotate-45">
-                Coming Soon
-              </div>
-            </div>
-          </div>
           <AddCampaignForm />
         </div>
       </div>
