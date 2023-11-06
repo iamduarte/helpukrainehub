@@ -2,8 +2,6 @@
 import { connectToDatabase } from "@/mongo";
 
 export default async function handler(req, res) {
-  // connect to atlas and return the connection "connectToDatabase"
-
   // get tag param from url
   const { tag } = req.query;
 
@@ -18,18 +16,18 @@ export default async function handler(req, res) {
       //filter by more than one tag when tag is an array
       if (Array.isArray(tag)) {
         data = await campaignsCollection
-          .find({ tags: { $in: tag } })
+          .find({ tags: { $in: tag }, verified: true })
           .sort({ featured: -1 })
           .toArray();
       } else if (tag) {
         // filter by tags if tag is provided
         data = await campaignsCollection
-          .find({ tags: tag })
+          .find({ tags: tag, verified: true })
           .sort({ featured: -1 })
           .toArray();
       } else {
         // get all campaigns from mongo
-        data = await campaignsCollection.find().toArray();
+        data = await campaignsCollection.find({ verified: true }).toArray();
       }
     } catch (error) {
       console.error("error ", error);
@@ -53,6 +51,17 @@ export default async function handler(req, res) {
 
     return res.status(200).json(campaign);
   }
+
+  //Delete method that deletes all unverified campaigns
+  // if (req.method === "DELETE") {
+  //   const client = await connectToDatabase();
+  //   const db = client.db("help-ukraine-hub");
+  //   const campaignsCollection = db.collection("Campaigns");
+
+  //   const result = await campaignsCollection.deleteMany({ verified: false });
+
+  //   return res.status(200).json(result);
+  // }
 
   res.status(405).json({ message: "Method not allowed" });
 }

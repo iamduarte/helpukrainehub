@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import Link from "next/link";
 
 export default function AddCampaignForm() {
+  const [submited, setSubmited] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -35,7 +37,51 @@ export default function AddCampaignForm() {
 
     // Process formData as needed
     console.log(JSON.stringify(formData));
+
+    setSubmited(true);
   };
+
+  const handleSubmitNew = () => {
+    setSubmited(false);
+    setFormData({
+      name: "",
+      description: "",
+      location: "",
+      image: "",
+      link: "",
+      email: "",
+      tags: "",
+      featured: false,
+      verified: false,
+    });
+  };
+
+  if (submited) {
+    return (
+      <div className="w-full max-w-xl mx-auto mt-20 bg-base-100 p-6 rounded-md shadow-xl text-black">
+        <h2 className="text-2xl font-semibold mb-4">Campaign Form</h2>
+        <p className="text-xl mb-10 mt-10">
+          Thank you for submitting your campaign! We will review it and add it
+          to the list as soon as possible.
+        </p>
+        <div className="flex justify-center items-center">
+          <button
+            type="submit"
+            onClick={handleSubmitNew}
+            className="bg-blue-700 text-yellow-300 p-2 rounded-md hover:bg-blue-600 w-1/2 m-2"
+          >
+            Submit New Campaign
+          </button>
+          <Link
+            href="/"
+            className="bg-blue-700 text-yellow-300 p-2 rounded-md hover:bg-blue-600 w-1/2 m-2"
+          >
+            Go Back Home
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full max-w-md mx-auto mt-20 bg-base-100 p-6 rounded-md shadow-xl text-black">
