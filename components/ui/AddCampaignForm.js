@@ -3,7 +3,7 @@ import Link from "next/link";
 import ReCAPTCHA from "react-google-recaptcha";
 
 export default function AddCampaignForm() {
-  const [submited, setSubmited] = useState(false);
+  const [submited, setSubmited] = useState(true);
   const [captcha, setCaptcha] = useState();
   const [formData, setFormData] = useState({
     name: "",
@@ -70,7 +70,7 @@ export default function AddCampaignForm() {
           Thank you for submitting your campaign! We will review it and add it
           to the list as soon as possible.
         </p>
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center flex-col sm:flex-row">
           <button
             type="submit"
             onClick={handleSubmitNew}
