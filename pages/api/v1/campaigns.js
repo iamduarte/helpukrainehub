@@ -53,7 +53,10 @@ export default async function handler(req, res) {
   }
 
   //  Delete method that deletes all unverified campaigns
-  if (req.method === "DELETE") {
+  if (
+    req.method === "DELETE" &&
+    req.query.pw === process.env.DELETE_UNVERIFIED_CAMPAIGNS
+  ) {
     const client = await connectToDatabase();
     const db = client.db("help-ukraine-hub");
     const campaignsCollection = db.collection("Campaigns");
