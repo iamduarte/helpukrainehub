@@ -7,8 +7,8 @@ import { handleClientScriptLoad } from "next/script";
 
 export default function ApiInfo() {
   const [isCopied, setIsCopied] = useState(false);
-  const apiLink = "http://localhost:3000/api/v1/campaigns";
-  //const apiLink = "https://helpukrainehub-cd14b.web.app/api/v1/campaings";
+  //const apiLink = "http://localhost:3000/api/v1/campaigns";
+  const apiLink = "https://helpukrainehub-cd14b.web.app/api/v1/campaings";
 
   const handleCopyClick = () => {
     navigator.clipboard.writeText(apiLink).then(() => {
@@ -47,7 +47,7 @@ export default function ApiInfo() {
               <div className="mockup-code mt-10 w-full md:w-auto lg:w-1/2 self-center relative">
                 <button
                   onClick={handleCopyClick}
-                  className="absolute top-0 right-0 text-yellow-300 px-1 md:px-2 py-0.5 md:py-1 rounded text-xs md:text-sm"
+                  className="absolute top-0 right-0 text-gray-500 px-1 md:px-2 py-0.5 md:py-1 rounded text-xs md:text-sm mt-3 mr-4"
                 >
                   {isCopied ? "Copied!" : "Copy Link"}
                 </button>

@@ -90,7 +90,7 @@ export default function AddCampaignForm() {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto mt-20 bg-base-100 p-6 rounded-md shadow-xl text-black">
+    <div className="w-full max-w-md mx-auto mt-20 bg-base-100 p-6 rounded-2xl shadow-xl text-black">
       <h2 className="text-2xl font-semibold mb-4">Campaign Form</h2>
 
       <form onSubmit={handleSubmit} className="space-y-4 flex flex-col">
