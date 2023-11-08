@@ -25,9 +25,9 @@ export default function AllCampaignsCard({
         <h2 className="card-title text-3xl self-center">{name}</h2>
         <p>{description}</p>
         <div className="card-actions md:justify-end justify-center mt-4">
-          <div className="btn bg-blue-700 border-none text-yellow-300 ">
+          {/* <div className="btn bg-blue-700 border-none text-yellow-300 ">
             More Info
-          </div>
+          </div> */}
           <a
             className="btn bg-blue-700 border-none text-yellow-300"
             href={link}
