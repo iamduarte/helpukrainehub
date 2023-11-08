@@ -3,7 +3,7 @@ import Link from "next/link";
 import ReCAPTCHA from "react-google-recaptcha";
 
 export default function AddCampaignForm() {
-  const [submited, setSubmited] = useState(true);
+  const [submited, setSubmited] = useState(false);
   const [captcha, setCaptcha] = useState();
   const [formData, setFormData] = useState({
     name: "",
