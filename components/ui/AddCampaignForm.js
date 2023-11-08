@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Link from "next/link";
+import ReCAPTCHA from "react-google-recaptcha";
 
 export default function AddCampaignForm() {
   const [submited, setSubmited] = useState(false);
+  const [captcha, setCaptcha] = useState();
   const [formData, setFormData] = useState({
     name: "",
     description: "",
@@ -27,6 +29,10 @@ export default function AddCampaignForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     //POST request to API with formData
+    if (!captcha) {
+      alert("Please confirm you are not a robot.");
+      return;
+    }
     const res = await fetch("/api/v1/campaigns", {
       method: "POST",
       headers: {
@@ -37,7 +43,7 @@ export default function AddCampaignForm() {
 
     // Process formData as needed
     console.log(JSON.stringify(formData));
-
+    setCaptcha();
     setSubmited(true);
   };
 
@@ -87,7 +93,7 @@ export default function AddCampaignForm() {
     <div className="w-full max-w-md mx-auto mt-20 bg-base-100 p-6 rounded-md shadow-xl text-black">
       <h2 className="text-2xl font-semibold mb-4">Campaign Form</h2>
 
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form onSubmit={handleSubmit} className="space-y-4 flex flex-col">
         <div>
           <label className="block text-sm font-medium mb-2" htmlFor="name">
             Campaign Name:
@@ -182,6 +188,12 @@ export default function AddCampaignForm() {
             className="w-full p-2 border rounded-md h-20"
           />
         </div>
+
+        <ReCAPTCHA
+          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+          className="mx-auto"
+          onChange={setCaptcha}
+        />
 
         <div>
           <button

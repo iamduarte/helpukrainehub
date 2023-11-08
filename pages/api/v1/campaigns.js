@@ -52,16 +52,16 @@ export default async function handler(req, res) {
     return res.status(200).json(campaign);
   }
 
-  //Delete method that deletes all unverified campaigns
-  // if (req.method === "DELETE") {
-  //   const client = await connectToDatabase();
-  //   const db = client.db("help-ukraine-hub");
-  //   const campaignsCollection = db.collection("Campaigns");
+  //  Delete method that deletes all unverified campaigns
+  if (req.method === "DELETE") {
+    const client = await connectToDatabase();
+    const db = client.db("help-ukraine-hub");
+    const campaignsCollection = db.collection("Campaigns");
 
-  //   const result = await campaignsCollection.deleteMany({ verified: false });
+    const result = await campaignsCollection.deleteMany({ verified: false });
 
-  //   return res.status(200).json(result);
-  // }
+    return res.status(200).json(result);
+  }
 
   res.status(405).json({ message: "Method not allowed" });
 }
