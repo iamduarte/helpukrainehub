@@ -12,8 +12,9 @@ export default function FeaturedCampaigns() {
 
   useEffect(() => {
     setIsLoading(true);
-    //fetch("https://helpukrainehub-cd14b.web.app/api/v1/test-data")
-    fetch("http://localhost:3000/api/v1/campaigns")
+    //fetch("https://helpukrainehub-cd14b.web.app/api/v1/campaigns")
+    //fetch("http://localhost:3000/api/v1/campaigns")
+    fetch("/api/v1/campaigns")
       .then((response) => {
         return response.json();
       })
