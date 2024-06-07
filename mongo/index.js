@@ -40,9 +40,7 @@
 
 import { MongoClient } from "mongodb";
 
-//const URI = process.env.DB_URI;
-const URI =
-  "mongodb+srv://admin:3DyptFL3eNGIrcPe@cluster0.cq0tbow.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+const URI = process.env.DB_URI;
 
 let cached = global.mongo;
 
