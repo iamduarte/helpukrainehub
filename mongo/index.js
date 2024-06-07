@@ -40,6 +40,10 @@
 
 import { MongoClient } from "mongodb";
 
+//const URI = process.env.DB_URI;
+const URI =
+  "mongodb+srv://admin:3DyptFL3eNGIrcPe@cluster0.cq0tbow.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+
 let cached = global.mongo;
 
 if (!cached) {
@@ -53,12 +57,10 @@ export async function connectToDatabase() {
 
   if (!cached.promise) {
     const opts = {};
-    cached.promise = MongoClient.connect(process.env.DB_URI, opts).then(
-      (client) => {
-        cached.conn = client;
-        return client;
-      }
-    );
+    cached.promise = MongoClient.connect(URI, opts).then((client) => {
+      cached.conn = client;
+      return client;
+    });
   }
 
   await cached.promise;
